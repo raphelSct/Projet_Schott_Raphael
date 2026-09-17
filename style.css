@@ -1,0 +1,237 @@
+/* ===== Variables et remise à zéro ===== */
+:root {
+    --couleur-fond: #eef2f7;
+    --couleur-carte: #ffffff;
+    --couleur-texte: #1f2937;
+    --couleur-texte-doux: #6b7280;
+    --couleur-bordure: #d5dbe4;
+    --couleur-principale: #2563eb;
+    --couleur-principale-foncee: #1d4ed8;
+    --couleur-erreur: #dc2626;
+    --couleur-erreur-fond: #fee2e2;
+    --couleur-succes: #16a34a;
+    --rayon: 10px;
+    --ombre: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--couleur-fond);
+    color: var(--couleur-texte);
+    line-height: 1.5;
+    /* Centrage du formulaire sur la page */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 24px 16px;
+}
+
+/* ===== Conteneur et carte ===== */
+.conteneur {
+    width: 100%;
+    max-width: 640px;
+}
+
+.carte {
+    background-color: var(--couleur-carte);
+    border-radius: var(--rayon);
+    box-shadow: var(--ombre);
+    padding: 32px;
+}
+
+.carte-entete {
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.carte-entete h1 {
+    font-size: 1.6rem;
+    margin-bottom: 6px;
+}
+
+.sous-titre {
+    color: var(--couleur-texte-doux);
+    font-size: 0.9rem;
+}
+
+/* ===== Champs du formulaire ===== */
+.champ {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+}
+
+.champ label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.champ input {
+    font-family: inherit;
+    font-size: 1rem;
+    color: inherit;
+    padding: 10px 12px;
+    border: 1px solid var(--couleur-bordure);
+    border-radius: var(--rayon);
+    background-color: #fff;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    width: 100%;
+}
+
+.champ input:focus {
+    outline: none;
+    border-color: var(--couleur-principale);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.18);
+}
+
+.champ input.invalide {
+    border-color: var(--couleur-erreur);
+    background-color: #fff7f7;
+}
+
+.champ input.invalide:focus {
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.18);
+}
+
+/* Deux champs côte à côte sur grand écran */
+.ligne {
+    display: flex;
+    gap: 16px;
+}
+
+.ligne .champ {
+    flex: 1;
+}
+
+/* ===== Messages d'erreur ===== */
+.erreur {
+    color: var(--couleur-erreur);
+    font-size: 0.8rem;
+    min-height: 1.1rem;
+    margin-top: 4px;
+}
+
+.erreur-globale {
+    background-color: var(--couleur-erreur-fond);
+    color: var(--couleur-erreur);
+    border: 1px solid var(--couleur-erreur);
+    border-radius: var(--rayon);
+    padding: 10px 12px;
+    font-size: 0.875rem;
+    margin-bottom: 16px;
+}
+
+.erreur-globale[hidden] {
+    display: none;
+}
+
+/* ===== Boutons ===== */
+.bouton {
+    width: 100%;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    background-color: var(--couleur-principale);
+    border: none;
+    border-radius: var(--rayon);
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.bouton:hover {
+    background-color: var(--couleur-principale-foncee);
+}
+
+.bouton:active {
+    transform: translateY(1px);
+}
+
+.bouton:focus-visible {
+    outline: 3px solid rgba(37, 99, 235, 0.4);
+    outline-offset: 2px;
+}
+
+.bouton-secondaire {
+    background-color: transparent;
+    color: var(--couleur-principale);
+    border: 1px solid var(--couleur-principale);
+    margin-top: 24px;
+}
+
+.bouton-secondaire:hover {
+    background-color: rgba(37, 99, 235, 0.08);
+}
+
+/* ===== Page récapitulative ===== */
+#carte-recapitulatif[hidden],
+#carte-formulaire[hidden] {
+    display: none;
+}
+
+#carte-recapitulatif .carte-entete h1 {
+    color: var(--couleur-succes);
+}
+
+.recapitulatif-ligne {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--couleur-bordure);
+}
+
+.recapitulatif-ligne:last-child {
+    border-bottom: none;
+}
+
+.recapitulatif dt {
+    font-weight: 600;
+    color: var(--couleur-texte-doux);
+    font-size: 0.875rem;
+}
+
+.recapitulatif dd {
+    text-align: right;
+    word-break: break-word;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 600px) {
+    body {
+        align-items: flex-start;
+        padding: 16px 12px;
+    }
+
+    .carte {
+        padding: 24px 20px;
+    }
+
+    .carte-entete h1 {
+        font-size: 1.35rem;
+    }
+
+    /* Les champs groupés passent l'un sous l'autre */
+    .ligne {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .recapitulatif-ligne {
+        flex-direction: column;
+        gap: 2px;
+    }
+
+    .recapitulatif dd {
+        text-align: left;
+    }
+}
